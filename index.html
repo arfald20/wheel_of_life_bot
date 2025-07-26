@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Колесо жизненного баланса</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Прогресс-бар -->
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text">
+                <span id="currentStep">1</span> из <span id="totalSteps">8</span> сфер
+            </div>
+        </div>
+
+        <!-- Главный контент -->
+        <div class="content" id="mainContent">
+            
+            <!-- Экран приветствия -->
+            <div class="screen active" id="welcomeScreen">
+                <div class="welcome-content">
+                    <div class="wheel-icon">🎯</div>
+                    <h1>Колесо жизненного баланса</h1>
+                    <p class="subtitle">Оцените 8 ключевых сфер вашей жизни и получите персональные рекомендации</p>
+                    
+                    <div class="info-cards">
+                        <div class="info-card">
+                            <div class="card-icon">⏱️</div>
+                            <div class="card-text">5-7 минут</div>
+                        </div>
+                        <div class="info-card">
+                            <div class="card-icon">📊</div>
+                            <div class="card-text">8 сфер жизни</div>
+                        </div>
+                        <div class="info-card">
+                            <div class="card-icon">💡</div>
+                            <div class="card-text">Персональные советы</div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-primary" onclick="startAssessment()">
+                        Начать оценку
+                    </button>
+                </div>
+            </div>
+
+            <!-- Экран оценки сферы -->
+            <div class="screen" id="assessmentScreen">
+                <div class="sphere-header">
+                    <div class="sphere-emoji" id="sphereEmoji">🏃‍♂️</div>
+                    <h2 class="sphere-title" id="sphereTitle">Здоровье</h2>
+                    <p class="sphere-description" id="sphereDescription">Оцените ваше физическое и психическое здоровье</p>
+                </div>
+
+                <!-- Вопросы для рефлексии -->
+                <div class="questions-section">
+                    <h3>Подумайте над этими вопросами:</h3>
+                    <div class="questions-list" id="questionsList">
+                        <!-- Вопросы будут добавлены динамически -->
+                    </div>
+                </div>
+
+                <!-- Слайдер для оценки -->
+                <div class="rating-section">
+                    <h3>Ваша оценка:</h3>
+                    <div class="slider-container">
+                        <input type="range" 
+                               id="ratingSlider" 
+                               min="1" 
+                               max="10" 
+                               value="5" 
+                               class="rating-slider"
+                               oninput="updateRatingDisplay(this.value)">
+                        <div class="slider-labels">
+                            <span>1</span>
+                            <span>2</span>
+                            <span>3</span>
+                            <span>4</span>
+                            <span>5</span>
+                            <span>6</span>
+                            <span>7</span>
+                            <span>8</span>
+                            <span>9</span>
+                            <span>10</span>
+                        </div>
+                    </div>
+                    <div class="rating-display">
+                        <span class="rating-value" id="ratingValue">5</span>
+                        <span class="rating-label" id="ratingLabel">из 10</span>
+                    </div>
+                </div>
+
+                <!-- Кнопки навигации -->
+                <div class="navigation">
+                    <button class="btn-secondary" id="prevBtn" onclick="previousSphere()" style="display: none;">
+                        ← Назад
+                    </button>
+                    <button class="btn-primary" id="nextBtn" onclick="nextSphere()">
+                        Далее →
+                    </button>
+                </div>
+            </div>
+
+            <!-- Экран завершения -->
+            <div class="screen" id="completionScreen">
+                <div class="completion-content">
+                    <div class="completion-icon">✨</div>
+                    <h2>Оценка завершена!</h2>
+                    <p>Анализируем ваши результаты и формируем персональные рекомендации...</p>
+                    
+                    <div class="results-preview" id="resultsPreview">
+                        <!-- Краткий предварительный результат -->
+                    </div>
+                    
+                    <button class="btn-primary" onclick="sendResults()">
+                        Получить полный отчет
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Подключение скриптов -->
+    <script src="js/telegram.js"></script>
+    <script src="js/wheel.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
