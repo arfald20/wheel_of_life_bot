@@ -292,15 +292,6 @@ class LifeWheelApp {
     }
     
     updateButtons() {
-        // Кнопка "Назад"
-        if (this.prevBtn) {
-            if (this.currentSphereIndex === 0) {
-                this.prevBtn.style.display = 'none';
-            } else {
-                this.prevBtn.style.display = 'block';
-            }
-        }
-        
         // Кнопка "Далее/Завершить"
         if (this.nextBtn) {
             if (this.currentSphereIndex === SPHERES_DATA.length - 1) {
@@ -309,6 +300,14 @@ class LifeWheelApp {
             } else {
                 this.nextBtn.textContent = 'Далее →';
                 this.nextBtn.classList.remove('btn-success');
+            }
+        }
+        // Кнопка "Назад"
+        if (this.prevBtn) {
+            if (this.currentSphereIndex === 0) {
+                this.prevBtn.style.display = 'none';
+            } else {
+                this.prevBtn.style.display = 'block';
             }
         }
     }
