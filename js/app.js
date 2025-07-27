@@ -185,8 +185,8 @@ class LifeWheelApp {
                 </div>
                 
                 <div class="buttons-container">
+                    <button id="nextBtn" class="btn btn-primary">Далее →</button>                
                     <button id="prevBtn" class="btn btn-secondary" style="display: none;">← Назад</button>
-                    <button id="nextBtn" class="btn btn-primary">Далее →</button>
                 </div>
                 
                 <canvas id="wheelCanvas" width="300" height="300" style="display: none;"></canvas>
