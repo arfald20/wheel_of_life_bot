@@ -1,144 +1,221 @@
-/* ========== Telegram Web-App базовые переменные ========== */
+/* === Общие стили и тема ======================================================= */
+
 :root {
-    --tg-bg:          var(--tg-theme-bg-color, #ffffff);
-    --tg-text:        var(--tg-theme-text-color, #1f2937);
-    --tg-hint:        var(--tg-theme-hint-color, #6b7280);
-    --tg-link:        var(--tg-theme-link-color, #2563eb);
-    --tg-btn:         var(--tg-theme-button-color, #2563eb);
-    --tg-btn-text:    var(--tg-theme-button-text-color, #ffffff);
-    --tg-sec-bg:      var(--tg-theme-secondary-bg-color, #f3f4f6);
+  --tg-bg: #ffffff;
+  --tg-text: #1f2937;
+  --tg-hint: #6b7280;
+  --tg-link: #2563eb;
+  --tg-btn: #2563eb;
+  --tg-btn-text: #ffffff;
+  --tg-sec-bg: #f3f4f6;
 }
 
-/* ========== Общий макет ========== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --tg-bg: #1f2937;
+    --tg-text: #d1d5db;
+    --tg-hint: #9ca3af;
+    --tg-link: #60a5fa;
+    --tg-btn: #3b82f6;
+    --tg-btn-text: #ffffff;
+    --tg-sec-bg: #374151;
+  }
+}
+
 html, body {
-    margin: 0;
-    padding: 0;
-    font-family: "Inter", "SF Pro Display", system-ui, sans-serif;
-    background: var(--tg-bg);
-    color: var(--tg-text);
-    -webkit-font-smoothing: antialiased;
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", "SF Pro Display", system-ui, sans-serif;
+  background-color: var(--tg-bg);
+  color: var(--tg-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
 }
-* { box-sizing: border-box; }
 
+/* Центрирование основного контейнера */
 #app {
-    max-width: 480px;
-    margin: 0 auto;
-    padding: 24px 16px 48px;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
 }
 
 /* ========== Прогресс-бар ========== */
 .progress-bar {
-    position: relative;
-    width: 100%;
-    height: 8px;
-    background: var(--tg-sec-bg);
-    border-radius: 4px;
-    overflow: hidden;
-    margin-bottom: 24px;
+  position: relative;
+  width: 100%;
+  height: 8px;
+  background: var(--tg-sec-bg);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 24px;
 }
+
 .progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--tg-btn) 0%, #3b82f6 100%);
-    transition: width .3s ease;
+  height: 100%;
+  background: linear-gradient(90deg, var(--tg-btn) 0%, #3b82f6 100%);
+  transition: width 0.3s ease;
 }
+
 .progress-text {
-    position: absolute;
-    top: -22px;
-    right: 0;
-    font-size: 12px;
-    color: var(--tg-hint);
+  position: absolute;
+  top: -22px;
+  right: 0;
+  font-size: 12px;
+  color: var(--tg-hint);
 }
 
-/* ========== Заголовок сферы и вопросы ========== */
+
+/* Заголовок сферы и вопросы */
 .sphere-header {
-    text-align: center;
-    margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 20px;
 }
+
 .sphere-header h2 {
-    margin: 0;
-    font-size: 22px;
-    font-weight: 600;
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
 }
-.questions { margin-bottom: 28px; }
+
+.questions {
+  margin-bottom: 28px;
+}
+
 .question {
-    margin: 6px 0;
-    font-size: 14px;
-    color: var(--tg-text);
+  margin: 6px 0;
+  font-size: 14px;
+  color: var(--tg-text);
 }
 
-/* ========== Слайдер оценки ========== */
+/* Слайдер оценки */
 .slider-container label {
-    display: block;
-    font-size: 14px;
-    margin-bottom: 4px;
-    color: var(--tg-text);
+  display: block;
+  font-size: 14px;
+  margin-bottom: 4px;
+  color: var(--tg-text);
 }
+
 .slider {
-    width: 100%;
-    margin: 6px 0 2px;
-    accent-color: var(--tg-btn);
+  width: 100%;
+  margin: 6px 0px 2px 0px;
+  accent-color: var(--tg-btn);
 }
+
 .slider-labels {
-    display: flex;
-    justify-content: space-between;
-    font-size: 12px;
-    color: var(--tg-hint);
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--tg-hint);
 }
 
-/* ========== Кнопки “Назад / Далее” ========== */
+/* Кнопки “Назад / Далее” */
 .buttons-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 16px;
-    margin-top: 32px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 32px;
 }
-.buttons-container > div:empty { flex: 1; }
 
+.buttons-container > div:empty {
+  flex: 1;
+}
+
+/* Кнопки */
 .btn {
-    flex: 1;
-    padding: 12px 18px;
-    border: none;
-    border-radius: 12px;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all .25s ease;
+  flex: 1;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-sizing: border-box;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
 }
+
 .btn-primary {
-    background: var(--tg-btn);
-    color: var(--tg-btn-text);
+  background: var(--tg-btn);
+  color: var(--tg-btn-text);
 }
-.btn-primary:hover { filter: brightness(1.05); transform: translateY(-2px); }
+
+.btn-primary:hover,
+.btn-primary:focus {
+  filter: brightness(1.05);
+  transform: translateY(-2px);
+  outline: none;
+}
+
 .btn-secondary {
-    background: var(--tg-sec-bg);
-    color: var(--tg-text);
+  background: var(--tg-sec-bg);
+  color: var(--tg-text);
 }
-.btn-secondary:hover { filter: brightness(0.97); transform: translateY(-2px); }
 
-/* ========== Сообщение завершения ========== */
+.btn-secondary:hover,
+.btn-secondary:focus {
+  filter: brightness(0.97);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+/* Завершение теста */
 .completion-message {
-    text-align: center;
-    padding: 40px 16px;
+  text-align: center;
+  padding: 40px 16px;
+  max-width: 450px;
+  margin: 0 auto;
 }
-.completion-icon { font-size: 60px; margin-bottom: 12px; }
-.completion-message h2 { margin: 0 0 12px; }
-.completion-message p { margin: 4px 0; color: var(--tg-hint); }
-.completion-message ul {
-    list-style: none;
-    padding: 0;
-    margin: 12px 0 0;
-    text-align: left;
-}
-.completion-message li { margin-bottom: 6px; }
 
-/* Спиннер */
-.loading-spinner {
-    width: 40px;
-    height: 40px;
-    border: 4px solid var(--tg-sec-bg);
-    border-top: 4px solid var(--tg-btn);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin: 24px auto 0;
+.completion-icon {
+  font-size: 60px;
+  margin-bottom: 12px;
+  color: var(--tg-btn);
 }
-@keyframes spin { 0% {transform:rotate(0deg);} 100% {transform:rotate(360deg);} }
+
+.completion-message h2 {
+  margin: 0 0 12px 0;
+  font-weight: 700;
+  color: var(--tg-text);
+}
+
+.completion-message p {
+  margin: 6px 0;
+  color: var(--tg-hint);
+  font-size: 14px;
+}
+
+.completion-message ul {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0 0;
+  text-align: left;
+  color: var(--tg-text);
+  font-size: 14px;
+}
+
+.completion-message li {
+  margin-bottom: 8px;
+}
+
+/* Спиннер загрузки */
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--tg-sec-bg);
+  border-top: 4px solid var(--tg-btn);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 24px auto 0;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
