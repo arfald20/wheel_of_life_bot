@@ -1,7 +1,7 @@
 /**
  * Модуль для генерации и отображения колеса жизненного баланса на клиенте
  */
-
+ 
 class WheelOfLife {
     constructor(canvasId, size = 300) {
         this.canvas = document.getElementById(canvasId);
