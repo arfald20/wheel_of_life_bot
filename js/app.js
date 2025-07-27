@@ -1,7 +1,7 @@
 /**
  * Главное приложение для Web App "Колесо жизненного баланса"
  */
-
+    
 class LifeBalanceApp {
     constructor() {
         this.currentSphereIndex = 0;
