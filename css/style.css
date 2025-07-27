@@ -1355,4 +1355,14 @@ body {
 [data-color-scheme="light"] {
     --border-color: var(--color-border);
 }
+/* === Premium Wheel ======================================================= */
+canvas#wheel {
+  border-radius: 50%;
+  background: #111827;
+  box-shadow: 0 4px 16px #0003;
+  transition: transform .4s cubic-bezier(.4,0,.2,1);
+}
+canvas#wheel:hover {
+  transform: scale(1.04);
+}
 ```
