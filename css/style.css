@@ -1,25 +1,32 @@
-/* === Общие стили и тема ======================================================= */
-
+/* === Telegram Web App переменные темы ================================= */
 :root {
-  --tg-bg: #ffffff;
-  --tg-text: #1f2937;
-  --tg-hint: #6b7280;
-  --tg-link: #2563eb;
-  --tg-btn: #2563eb;
-  --tg-btn-text: #ffffff;
-  --tg-sec-bg: #f3f4f6;
+  /* Светлая тема по умолчанию */
+  --tg-bg: var(--tg-theme-bg-color, #ffffff);
+  --tg-text: var(--tg-theme-text-color, #1f2937);
+  --tg-hint: var(--tg-theme-hint-color, #6b7280);
+  --tg-link: var(--tg-theme-link-color, #2563eb);
+  --tg-btn: var(--tg-theme--btn-text: var(--tg-theme-button-text-color, #ffffff);
+  --tg-sec-bg: var(--tg-theme-secondary-bg-color, #f3f4f6);
 }
 
+/* Темная тема */
 @media (prefers-color-scheme: dark) {
   :root {
-    --tg-bg: #1f2937;
-    --tg-text: #d1d5db;
-    --tg-hint: #9ca3af;
-    --tg-link: #60a5fa;
-    --tg-btn: #3b82f6;
-    --tg-btn-text: #ffffff;
-    --tg-sec-bg: #374151;
+    --tg-bg: var(--tg-theme-bg-color, #1f2937);
+    --tg-text: var(--tg-theme-text-color, #d1d5db);
+    --tg-hint: var(--tg-theme-hint-color, #9ca3af);
+    --tg-link: var(--tg-theme-link-color, #60a5fa);
+    --tg-btn: var(--tg-theme-button-color, #3b82f6);
+    --tg-btn-text: var(--tg-theme-button-text-color, #ffffff);
+    --tg-sec-bg: var(--tg-theme-secondary-bg-color, #374151);
   }
+}
+
+/* === Базовые стили и сброс =========================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html, body {
@@ -31,75 +38,150 @@ html, body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
 }
 
-/* Центрирование основного контейнера */
+/* === Главный контейнер приложения ================================== */
 #app {
-  max-width: 480px;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 500px;
   margin: 0 auto;
-  padding: 24px 16px 48px;
+  padding: 20px 16px;
+  
+  /* Центрирование контента */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 
-/* ========== Прогресс-бар ========== */
+/* === Карточка вопроса ============================================== */
+.question-card,
+.fallback-ui {
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto;
+  padding: 0;
+  
+  /* Центрирование содержимого карточки */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* === Заголовок сферы =============================================== */
+.sphere-header {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.sphere-header h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--tg-text);
+}
+
+.sphere-icon {
+  font-size: 32px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* === Прогресс-бар ================================================== */
 .progress-bar {
   position: relative;
   width: 100%;
+  max-width: 400px;
   height: 8px;
   background: var(--tg-sec-bg);
   border-radius: 4px;
   overflow: hidden;
-  margin-bottom: 24px;
+  margin: 0 auto 24px auto;
 }
 
 .progress-fill {
   height: 100%;
   background: linear-gradient(90deg, var(--tg-btn) 0%, #3b82f6 100%);
   transition: width 0.3s ease;
+  border-radius: 4px;
 }
 
 .progress-text {
   position: absolute;
-  top: -22px;
+  top: -24px;
   right: 0;
   font-size: 12px;
   color: var(--tg-hint);
+  white-space: nowrap;
 }
 
-
-/* Заголовок сферы и вопросы */
-.sphere-header {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.sphere-header h2 {
-  margin: 0;
-  font-size: 22px;
-  font-weight: 600;
-}
-
+/* === Вопросы ======================================================= */
 .questions {
-  margin-bottom: 28px;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto 32px auto;
+  text-align: left;
 }
 
+.question-item,
 .question {
-  margin: 6px 0;
+  margin: 12px 0;
   font-size: 14px;
+  line-height: 1.5;
   color: var(--tg-text);
+  padding: 0 8px;
 }
 
-/* Слайдер оценки */
+/* === Слайдер оценки =============================================== */
+.slider-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto 32px auto;
+  text-align: center;
+}
+
 .slider-container label {
   display: block;
-  font-size: 14px;
-  margin-bottom: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 12px;
   color: var(--tg-text);
 }
 
 .slider {
   width: 100%;
-  margin: 6px 0px 2px 0px;
+  margin: 12px 0;
   accent-color: var(--tg-btn);
+  height: 6px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--tg-sec-bg);
+  border-radius: 3px;
+  outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--tg-btn);
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--tg-btn);
+  cursor: pointer;
+  border: none;
 }
 
 .slider-labels {
@@ -107,31 +189,35 @@ html, body {
   justify-content: space-between;
   font-size: 12px;
   color: var(--tg-hint);
+  margin-top: 8px;
 }
 
-/* Кнопки “Назад / Далее” */
+/* === Кнопки ======================================================== */
 .buttons-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 32px auto 0 auto;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 16px;
-  margin-top: 32px;
 }
 
 .buttons-container > div:empty {
   flex: 1;
 }
 
-/* Кнопки */
 .btn {
   flex: 1;
-  padding: 12px 18px;
+  max-width: 180px;
+  padding: 14px 20px;
   border: none;
-  border-radius: 12px;
-  font-size: 15px;
+  border-radius: 16px;
+  font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.25s ease;
-  box-sizing: border-box;
+  transition: all 0.3s ease;
+  text-align: center;
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -144,7 +230,7 @@ html, body {
 
 .btn-primary:hover,
 .btn-primary:focus {
-  filter: brightness(1.05);
+  filter: brightness(1.1);
   transform: translateY(-2px);
   outline: none;
 }
@@ -152,45 +238,80 @@ html, body {
 .btn-secondary {
   background: var(--tg-sec-bg);
   color: var(--tg-text);
+  border: 1px solid var(--tg-hint);
 }
 
 .btn-secondary:hover,
 .btn-secondary:focus {
-  filter: brightness(0.97);
+  background: var(--tg-hint);
+  color: var(--tg-bg);
   transform: translateY(-2px);
   outline: none;
 }
 
-/* Завершение теста */
+.btn-success {
+  background: #10B981;
+  color: white;
+}
+
+/* === Canvas колеса ================================================= */
+.wheel-canvas {
+  display: block;
+  margin: 20px auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  height: auto;
+}
+
+/* === Экран завершения ============================================== */
+.completion-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--tg-bg);
+  z-index: 1000;
+  
+  /* Центрирование содержимого */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
 .completion-message {
   text-align: center;
-  padding: 40px 16px;
-  max-width: 450px;
-  margin: 0 auto;
+  max-width: 400px;
+  width: 100%;
+  padding: 20px;
 }
 
 .completion-icon {
-  font-size: 60px;
-  margin-bottom: 12px;
+  font-size: 64px;
+  margin-bottom: 16px;
   color: var(--tg-btn);
 }
 
 .completion-message h2 {
-  margin: 0 0 12px 0;
+  margin: 0 0 16px 0;
+  font-size: 24px;
   font-weight: 700;
   color: var(--tg-text);
 }
 
 .completion-message p {
-  margin: 6px 0;
+  margin: 8px 0;
   color: var(--tg-hint);
-  font-size: 14px;
+  font-size: 16px;
+  line-height: 1.4;
 }
 
 .completion-message ul {
   list-style: none;
   padding: 0;
-  margin: 16px 0 0 0;
+  margin: 20px 0;
   text-align: left;
   color: var(--tg-text);
   font-size: 14px;
@@ -198,9 +319,28 @@ html, body {
 
 .completion-message li {
   margin-bottom: 8px;
+  padding-left: 20px;
+  position: relative;
 }
 
-/* Спиннер загрузки */
+.completion-message li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--tg-btn);
+  font-weight: bold;
+}
+
+.final-wheel-canvas {
+  display: block;
+  margin: 20px auto;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  max-width: 100%;
+  height: auto;
+}
+
+/* === Анимация загрузки ============================================= */
 .loading-spinner {
   width: 40px;
   height: 40px;
@@ -212,10 +352,130 @@ html, body {
 }
 
 @keyframes spin {
-  0% {
-    transform: rotate(0deg);
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* === Медиа-запросы для мобильных устройств ======================== */
+@media screen and (max-width: 480px) {
+  #app {
+    padding: 16px 12px;
   }
-  100% {
-    transform: rotate(360deg);
+  
+  .question-card,
+  .fallback-ui {
+    max-width: 100%;
+    padding: 0;
+  }
+  
+  .sphere-header h2 {
+    font-size: 22px;
+  }
+  
+  .sphere-icon {
+    font-size: 28px;
+  }
+  
+  .questions {
+    max-width: 100%;
+  }
+  
+  .slider-container {
+    max-width: 100%;
+  }
+  
+  .buttons-container {
+    max-width: 100%;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .btn {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .completion-message {
+    padding: 16px;
+  }
+  
+  .completion-message h2 {
+    font-size: 20px;
+  }
+}
+
+/* === Очень маленькие экраны ======================================= */
+@media screen and (max-width: 360px) {
+  #app {
+    padding: 12px 8px;
+  }
+  
+  .sphere-header h2 {
+    font-size: 20px;
+  }
+  
+  .question-item,
+  .question {
+    font-size: 13px;
+    padding: 0 4px;
+  }
+  
+  .slider-container label {
+    font-size: 14px;
+  }
+  
+  .btn {
+    font-size: 14px;
+    padding: 12px 16px;
+  }
+}
+
+/* === Планшеты ===================================================== */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  #app {
+    max-width: 600px;
+    padding: 24px 20px;
+  }
+  
+  .question-card,
+  .fallback-ui {
+    max-width: 500px;
+  }
+  
+  .sphere-header h2 {
+    font-size: 26px;
+  }
+  
+  .sphere-icon {
+    font-size: 36px;
+  }
+}
+
+/* === Десктоп ====================================================== */
+@media screen and (min-width: 769px) {
+  #app {
+    max-width: 600px;
+    padding: 32px 24px;
+  }
+  
+  .question-card,
+  .fallback-ui {
+    max-width: 500px;
+  }
+  
+  .sphere-header h2 {
+    font-size: 28px;
+  }
+  
+  .sphere-icon {
+    font-size: 40px;
+  }
+  
+  .buttons-container {
+    flex-direction: row;
+  }
+  
+  .btn {
+    max-width: 200px;
   }
 }
